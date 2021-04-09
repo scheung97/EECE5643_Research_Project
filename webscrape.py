@@ -1,13 +1,23 @@
-from bs4 import BeautifulSoup 
+from bs4 import BeautifulSoup, Comment
 import requests
 
 def main(): 
-    url = "https://www.nytimes.com/interactive/2021/us/massachusetts-covid-cases.html"
+    url = "https://covid.cdc.gov/covid-data-tracker/#datatracker-home"
     r = requests.get(url)
-    # print(r.text)
-    html = r.text
-    soup = BeautifulSoup(html, 'html.parser')
-    print(soup.get_text())
+    soup = BeautifulSoup(r.text, 'html.parser')
+
+
+    # Steven wants: Total Vaccines Administered, Total Infections, and Total Deaths
+
+
+
+    out_divs = soup.find_all(id='status-bar')
+    for out_div in out_divs: 
+        cases = soup.find('div', id="status-cases-total")
+        vac_admin = soup.find('div', id="status-total-vaccines")
+        deaths = soup.find('div',id="status-deaths-total")
+    print(f"deaths: {str(deaths)}\n cases: {str(cases)}\n vaccines administered: {str(vac_admin)}\n")
+
 
 if __name__ == "__main__": 
     main()    
