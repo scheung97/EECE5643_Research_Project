@@ -24,11 +24,11 @@ def main():
     with open('covid_data.csv', mode = 'w') as csv_file: 
       fieldnames = ['date', 'time', 'cases', 'deaths', 'administered vaccines']
       writer = csv.DictWriter(csv_file, fieldnames = fieldnames)
-        
+
       writer.writeheader()  #writes the field names at the top
       writer.writerow({'date': date, 'time': time, 'cases': tot_cases, 'deaths': tot_deaths, 'administered vaccines': tot_vaccines_administered})
 
-    print(f"deaths: {tot_deaths}\n cases: {tot_cases}\n vaccines administered: {tot_vaccines_administered}\n")
+    print(f"Published data to CSV file: \n\n deaths: {tot_deaths}\n cases: {tot_cases}\n vaccines administered: {tot_vaccines_administered}\n")
 
 if __name__ == "__main__": 
     main()    
