@@ -30,17 +30,21 @@ def main():
 
   #Calculated data: 
 
-  #death_rate: 
-  death_rate = (tot_deaths/tot_cases) #multiply by 100 for death_rate percentage 
+  #total death_rate: 
+  tot_death_rate = (tot_deaths/tot_cases) #multiply by 100 for death_rate percentage 
   
-  #infection rate: 
-  seven_days_cases = stat_bar['cases-7-day']
-  cases_end_of_yesterday = tot_cases - seven_days_cases[1][0]
-  cases_two_days_ago = cases_end_of_yesterday - seven_days_cases[2][0]
+  #total infection rate: 
+  tot_infect_rate = (tot_cases/ 330425184)   #cases/population (as of 4/17/2021)
 
-  num_infections_per_day = cases_end_of_yesterday - cases_two_days_ago 
-  pop_at_risk = 330425184 - tot_cases                                       #Assuming that people can't get re-infected: US Population - tot_cases = population@risk
-  infect_rate = num_infections_per_day / pop_at_risk
+
+  #infection rate per day 
+  # seven_days_cases = stat_bar['cases-7-day']
+  # cases_end_of_yesterday = tot_cases - seven_days_cases[1][0]
+  # cases_two_days_ago = cases_end_of_yesterday - seven_days_cases[2][0]
+
+  # num_infections_per_day = cases_end_of_yesterday - cases_two_days_ago 
+  # pop_at_risk = 330425184 - tot_cases                                       #Assuming that people can't get re-infected: US Population - tot_cases = population@risk
+  # infect_rate_per_day = num_infections_per_day / pop_at_risk
 
   #################################################################################################################################################################################################################################################################
   #    FILE WORK :
@@ -55,7 +59,7 @@ def main():
       fieldnames = ['date', 'time', 'total_cases', 'total_deaths', 'total administered vaccines', 'infection rate', 'death rate']
       writer = csv.DictWriter(csvfile, fieldnames = fieldnames)
 
-      writer.writerow({'date': date, 'time': time, 'total_cases': tot_cases, 'total_deaths': tot_deaths, 'total administered vaccines': tot_vaccines_administered, 'infection rate': infect_rate, 'death rate': death_rate})
+      writer.writerow({'date': date, 'time': time, 'total_cases': tot_cases, 'total_deaths': tot_deaths, 'total administered vaccines': tot_vaccines_administered, 'infection rate': tot_infect_rate, 'death rate': tot_death_rate})
       csvfile.close()
 
   except: 
@@ -66,10 +70,10 @@ def main():
     writer = csv.DictWriter(new_file, fieldnames = fieldnames)
 
     writer.writeheader()  #writes the field names at the top
-    writer.writerow({'date': date, 'time': time, 'total_cases': tot_cases, 'total_deaths': tot_deaths, 'total administered vaccines': tot_vaccines_administered, 'infection rate': infect_rate, 'death rate': death_rate})
+    writer.writerow({'date': date, 'time': time, 'total_cases': tot_cases, 'total_deaths': tot_deaths, 'total administered vaccines': tot_vaccines_administered, 'infection rate': tot_infect_rate, 'death rate': tot_death_rate})
     new_file.close()
 
-  print(f"Published data to CSV file: \n\n total cases: {tot_cases}\n total deaths: {tot_deaths}\n total number of vaccines administered: {tot_vaccines_administered}\n infection rate: {infect_rate}\n death rate: {death_rate}\n ")
+  print(f"Published data to CSV file: \n\n total cases: {tot_cases}\n total deaths: {tot_deaths}\n total number of vaccines administered: {tot_vaccines_administered}\n infection rate: {tot_infect_rate}\n death rate: {tot_death_rate}\n ")
 
 if __name__ == "__main__": 
     main()    
