@@ -35,8 +35,8 @@ def main():
   
   #infection rate: 
   seven_days_cases = stat_bar['cases-7-day']
-  cases_end_of_yesterday = tot_cases - seven_days_cases[0][0]
-  cases_two_days_ago = cases_end_of_yesterday - seven_days_cases[1][0]
+  cases_end_of_yesterday = tot_cases - seven_days_cases[1][0]
+  cases_two_days_ago = cases_end_of_yesterday - seven_days_cases[2][0]
 
   num_infections_per_day = cases_end_of_yesterday - cases_two_days_ago 
   pop_at_risk = 330425184 - tot_cases                                       #Assuming that people can't get re-infected: US Population - tot_cases = population@risk
@@ -52,24 +52,24 @@ def main():
     #if file_name already exists, we append the new data 
     with open(file_name, mode = 'r') as csv_file:  #try opening file in "read mode". will not work if file doesn't exist
       csvfile = open(file_name, 'a') #if we have the file, we put it in append_mode
-      fieldnames = ['date', 'time', 'infection rate', 'death rate', 'total administered vaccines']
+      fieldnames = ['date', 'time', 'total_cases', 'total_deaths', 'total administered vaccines', 'infection rate', 'death rate']
       writer = csv.DictWriter(csvfile, fieldnames = fieldnames)
 
-      writer.writerow({'date': date, 'time': time, 'infection rate': infect_rate, 'death rate': death_rate, 'total administered vaccines': tot_vaccines_administered})
+      writer.writerow({'date': date, 'time': time, 'total_cases': tot_cases, 'total_deaths': tot_deaths, 'total administered vaccines': tot_vaccines_administered, 'infection rate': infect_rate, 'death rate': death_rate})
       csvfile.close()
 
   except: 
     #if file_name doesn't aleady exist, we create it
     new_file = open(file_name, mode = 'w') 
     
-    fieldnames = ['date', 'time', 'infection rate', 'death rate', 'total administered vaccines']
+    fieldnames = ['date', 'time', 'total_cases', 'total_deaths', 'total administered vaccines', 'infection rate', 'death rate']
     writer = csv.DictWriter(new_file, fieldnames = fieldnames)
 
     writer.writeheader()  #writes the field names at the top
-    writer.writerow({'date': date, 'time': time, 'infection rate': infect_rate, 'death rate': death_rate, 'total administered vaccines': tot_vaccines_administered})
+    writer.writerow({'date': date, 'time': time, 'total_cases': tot_cases, 'total_deaths': tot_deaths, 'total administered vaccines': tot_vaccines_administered, 'infection rate': infect_rate, 'death rate': death_rate})
     new_file.close()
 
-  print(f"Published data to CSV file: \n\n infection rate: {infect_rate}\n death rate: {death_rate}\n total number of vaccines administered: {tot_vaccines_administered}\n")
+  print(f"Published data to CSV file: \n\n total cases: {tot_cases}\n total deaths: {tot_deaths}\n total number of vaccines administered: {tot_vaccines_administered}\n infection rate: {infect_rate}\n death rate: {death_rate}\n ")
 
 if __name__ == "__main__": 
     main()    
