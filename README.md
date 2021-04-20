@@ -10,7 +10,7 @@ Currently uses the CDC data tracker's status bar 3rd party call to grab the tota
 
 Would recommend creating a virtualenvironment for this. 
 
-To run: <br> <br> 
+To run: <br> 
 
 1) Download required libraries: <br> 
 
@@ -18,7 +18,7 @@ To run: <br> <br>
 python -m pip install -r requirements 
 ```
 
-<br><br> 
+<br> 
 2)  <br>
 
 ```
