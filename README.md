@@ -13,6 +13,7 @@ Currently uses the CDC data tracker's status bar 3rd party call to grab the tota
 Would recommend creating a virtualenvironment for this. 
 
 To run: <br> <br> 
+
 1) Download required libraries: 
 <br> 
 
@@ -27,12 +28,12 @@ python -m pip install -r requirements
 python webscrape.py
 ```
 
-<br><br> 
+<br> 
 3) Run MATLAB script: 
 <br> 
 
 One method: Open 'CovidSimulation.m' file in MATLAB window --> hit the Run button 
-<br> <br> 
+<br>  
 
 Other method: Using Linux command line (with MATLAB program downloaded) <br> 
 
