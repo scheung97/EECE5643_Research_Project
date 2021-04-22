@@ -10,23 +10,27 @@ Currently uses the CDC data tracker's status bar 3rd party call to grab the tota
 
 Would recommend creating a virtualenvironment for this. 
 
-To run: <br> <br> 
+To run: <br> 
 
-1) Download required libraries: <br> 
+<ol> 
+  <li> Download required libraries:  <br> 
 
 ```
 python -m pip install -r requirements 
 ```
+  </li>
 
-<br><br> 
-2)  <br>
+<br> 
+  <li> Optional: If you want to get the most recent data  <br>
 
 ```
 python webscrape.py
 ```
 
+  </li>
+  
 <br> 
-3) Run MATLAB script: <br>
+<li> Run MATLAB script:  <br>
 
 One method: Open 'CovidSimulation.m' file in MATLAB window --> hit the Run button 
 <br>  
@@ -37,3 +41,5 @@ Other method: Using Linux command line (with MATLAB program downloaded) <br>
 matlab.exe -r "run('CovidSimulation.m');" 
 ```
 
+  </li> 
+</ol> 
